@@ -1,4 +1,4 @@
-# Electron + React + Flask + SQLite Windsurf Rules
+# Electron + React + Flask + SQLite
 
 ## Deskripsi
 Aturan workspace untuk aplikasi desktop lirik lagu global, menggunakan Electron.js (React) sebagai frontend, Python Flask sebagai backend API lokal, dan SQLite sebagai database cache lirik.
