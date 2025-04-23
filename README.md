@@ -1,4 +1,4 @@
-# Electron + React + Flask + SQLite Windsurf Rules
+# Electron + React + Flask + SQLite
 
 ## Description
 Workspace rules for a desktop lyrics finder application built with Electron.js (React) frontend, Python Flask backend, and SQLite for caching lyrics.
