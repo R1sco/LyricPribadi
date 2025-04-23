@@ -26,4 +26,12 @@ This project is intended for educational use to demonstrate:
 - Deploying Flask on a VPS using Gunicorn and Nginx.
 
 ## Credits
-Adaptasi dari best practice Electron, React, Flask, dan SQLite.
+Educational purposes and best practice adaptations for Electron, React, Flask, and SQLite.
+
+## Todo List
+
+- [ ] Add theme toggle
+- [ ] Add spotify-like card
+- [ ] Add spotify direct link
+- [ ] Add language selection dropdown
+- [ ] Add romanization of Japanese lyrics
