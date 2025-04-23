@@ -1,0 +1,283 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#root, .container-fluid {
+  /* Smooth transition for theme changes */
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Hapus styling yang tidak digunakan */
+
+/* Aturan untuk card lirik - style Spotify */
+.lyrics-card {
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  margin-top: 0.5rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-mode .lyrics-card {
+  background-color: #181818;
+  color: #b3b3b3;
+}
+
+.light-mode .lyrics-card {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Styling untuk card-body */
+.lyrics-card .card-body {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+/* Hapus efek hover yang berlebihan */
+
+.search-container {
+  position: relative;
+  width: 100%; /* Full width of parent */
+  max-width: 500px; /* Sedikit lebih kecil */
+  margin: 0 auto 2rem; /* Center horizontally dan tambah margin bottom */
+  /* Add border to the container */
+  border: 1px solid #444; /* Dark theme input border color */
+  /* Use Bootstrap's large border radius */
+  border-radius: var(--bs-border-radius-lg);
+  /* Prevent children from spilling out - CRITICAL for button positioning */
+  overflow: hidden;
+  /* Add transition for hover/focus effect */
+  transition: all 0.3s ease;
+  /* Add shadow effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Improve visibility */
+  /* background-color removed to use theme default */
+  /* Ensure container has proper layout - IMPORTANT */
+  display: flex;
+}
+
+.search-container .form-control-lg {
+  flex: 1; /* Use flexbox to fill available space */
+  padding-right: 110px; /* Make space for the button */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem; /* Tambahkan padding kiri agar teks tidak terlalu dekat dengan border */
+  /* Remove input's own border */
+  border: none;
+  /* Remove default focus outline/shadow if browser adds it */
+  outline: none;
+  box-shadow: none;
+  /* background-color and color overrides removed for theme defaults */
+  /* Prevent text overflow issues while still allowing text to be visible */
+  white-space: nowrap; /* Keep text on one line */
+  text-overflow: ellipsis; /* Show ... when text overflows */
+  overflow: hidden; /* Hide overflow */
+  /* Font styling similar to GitHub */
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.search-container .search-button-inside {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%; /* Match input height */
+  /* Remove button's own border */
+  border: none;
+  /* Remove rounded corners that are now handled by container */
+  border-radius: 0;
+  /* Add transition for smooth effect */
+  transition: background-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+  /* Fixed width to prevent movement */
+  width: 110px;
+  /* Text styling */
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  /* Ensure button always shows completely */
+  z-index: 10;
+}
+
+.search-container .search-button-inside:disabled {
+  opacity: 1; /* Keep same opacity as enabled */
+  filter: none; /* Remove any filters */
+  cursor: default;
+}
+
+/* Hover/Focus effect on the CONTAINER */
+.search-container:hover,
+.search-container:focus-within {
+  border-color: #555; /* Example: Slightly lighter gray */
+  box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25);
+}
+
+.lyrics-text {
+  /* Font */
+  font-family: var(--bs-body-font-family);
+  font-size: 1rem;
+  line-height: 1.75; /* Spotify-like line height */
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  
+  /* Layout */
+  white-space: pre-line; /* Better handling of line breaks */
+  word-wrap: break-word;
+  height: 350px; /* Fixed height instead of max-height */
+  overflow-y: scroll; /* Force scrollbar to always show */
+  overscroll-behavior: contain; /* Prevent scroll chaining */
+  
+  /* Visual */
+  width: 100%;
+  padding: 2rem 3rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-mode .lyrics-text {
+  background-color: #181818;
+  color: #b3b3b3;
+}
+
+.light-mode .lyrics-text {
+  background-color: #ffffff;
+  color: #212529; /* default bootstrap body color */
+}
+
+/* Space between lyric paragraphs */
+.lyrics-text p {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+/* Pastikan paragraf lirik tampil dengan baik */
+.lyrics-text p:first-child {
+  margin-top: 0;
+}
+
+.lyrics-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Theme toggle button styling */
+.theme-btn {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  color: inherit;
+  cursor: pointer;
+  /* Rotate on theme switch */
+  transition: transform 0.6s ease, filter 0.3s ease;
+}
+
+.theme-btn:hover {
+  filter: brightness(0.8);
+}
+
+/* Fade-in animation for theme icon */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.theme-btn span {
+  display: inline-block;
+  animation: fadeInScale 1s ease-in-out both;
+}
+
+/* Styling judul lagu - style Spotify */
+.lyrics-header {
+  background-color: #181818; /* Same as card */
+  color: #ffffff;
+  padding: 1.2rem 1rem 0.8rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: none;
+  letter-spacing: -0.04em; /* Spotify-like letter spacing */
+}
+
+/* Basic scrollbar styling */
+.lyrics-text {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #555 #333; /* Firefox */
+  pointer-events: auto; /* Pastikan scrolling dapat dilakukan */
+}
+
+/* Chrome, Edge, dan Safari */
+.lyrics-text::-webkit-scrollbar {
+  width: 6px;
+  background-color: #222;
+}
+
+.lyrics-text::-webkit-scrollbar-track {
+  background: #333;
+}
+
+.lyrics-text::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
