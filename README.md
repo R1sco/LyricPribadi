@@ -1,4 +1,4 @@
-# Lyrics Finder Desktop App
+# Electron + React + Flask + SQLite Windsurf Rules
 
 ## Description
 Workspace rules for a desktop lyrics finder application built with Electron.js (React) frontend, Python Flask backend, and SQLite for caching lyrics.
@@ -26,12 +26,4 @@ This project is intended for educational use to demonstrate:
 - Deploying Flask on a VPS using Gunicorn and Nginx.
 
 ## Credits
-Educational purposes and best practice adaptations for Electron, React, Flask, and SQLite.
-
-## Todo List
-
-- [ ] Add theme toggle
-- [ ] Add spotify-like card
-- [ ] Add spotify direct link
-- [ ] Add language selection dropdown
-- [ ] Add romanization of Japanese lyrics
+Adaptasi dari best practice Electron, React, Flask, dan SQLite.
