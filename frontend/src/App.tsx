@@ -13,21 +13,44 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   const fetchLyrics = async () => {
-    if (!query.trim()) return; // Don't search if query is empty
+    if (!query.trim()) {
+      setError('Please enter a song title or artist name.');
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
-    setLyrics(''); // Clear previous lyrics
 
     try {
+      // Coba periksa status API terlebih dahulu
+      try {
+        const debugResponse = await fetch('/api/debug');
+        if (debugResponse.ok) {
+          const debugData = await debugResponse.json();
+          if (!debugData.has_api_key) {
+            setError('API key tidak dikonfigurasi di server. Harap konfigurasikan GENIUS_API_KEY di Vercel.');
+            setIsLoading(false);
+            return;
+          }
+        }
+      } catch (debugError) {
+        // Lanjutkan jika endpoint debug tidak tersedia
+        console.log('Debug endpoint not available:', debugError);
+      }
+
+      // Lanjutkan dengan permintaan lirik
       const response = await fetch(`/api/lyrics?query=${encodeURIComponent(query)}`);
       const data = await response.json();
+      
       if (response.ok) {
         setLyrics(data.lyrics || 'Lyrics not found.'); // Handle empty lyrics from backend
       } else {
+        // Tampilkan pesan error dari server jika ada
         setError(data.error || 'Failed to fetch lyrics.');
       }
     } catch (error) {
-      setError('An error occurred while connecting to the server.');
+      console.error('Error fetching lyrics:', error);
+      setError('An error occurred while connecting to the server. Pastikan API key sudah dikonfigurasi di Vercel.');
     } finally {
       setIsLoading(false);
     }

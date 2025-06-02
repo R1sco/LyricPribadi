@@ -51,9 +51,7 @@ GENIUS_API_URL = 'https://api.genius.com/search'
 # Validasi API key
 if not GENIUS_API_KEY:
     logging.error("GENIUS_API_KEY tidak ditemukan di environment variables. Aplikasi mungkin tidak berfungsi dengan benar.")
-    # Dalam produksi, Anda bisa memilih untuk menghentikan aplikasi di sini
-    # import sys
-    # sys.exit(1)
+    # Kita tidak menghentikan aplikasi, tapi akan mengembalikan error yang jelas saat API dipanggil
 
 # Setup basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -84,9 +82,26 @@ def init_db():
     conn.commit()
     conn.close()
 
+@app.route('/api/debug', methods=['GET'])
+def debug():
+    """Endpoint untuk debugging status API"""
+    has_api_key = bool(GENIUS_API_KEY)
+    return jsonify({
+        'status': 'ok',
+        'has_api_key': has_api_key,
+        'environment': os.environ.get('VERCEL_ENV', 'development'),
+        'database_path': DATABASE
+    })
+
 @app.route('/api/lyrics', methods=['GET'])
 @limiter.limit("5 per minute")
 def get_lyrics():
+    # Periksa API key terlebih dahulu
+    if not GENIUS_API_KEY:
+        return jsonify({
+            'error': 'API key tidak dikonfigurasi. Harap konfigurasikan GENIUS_API_KEY di environment variables Vercel.'
+        }), 500
+        
     query = request.args.get('query', '')
     if not query:
         return jsonify({'error': 'No query provided'}), 400
