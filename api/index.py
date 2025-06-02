@@ -192,5 +192,26 @@ with app.app_context():
 
 # Handler for Vercel serverless function
 def handler(request, context):
-    with app.test_client() as client:
-        return client.get(request.path, query_string=request.args)
+    try:
+        with app.test_client() as client:
+            # Handle different HTTP methods
+            if request.method == 'GET':
+                return client.get(request.path, query_string=request.args)
+            elif request.method == 'POST':
+                return client.post(request.path, data=request.data, content_type=request.content_type)
+            elif request.method == 'PUT':
+                return client.put(request.path, data=request.data, content_type=request.content_type)
+            elif request.method == 'DELETE':
+                return client.delete(request.path)
+            else:
+                # Default to GET if method not recognized
+                return client.get(request.path, query_string=request.args)
+    except Exception as e:
+        logging.error(f"Serverless function error: {str(e)}")
+        return {
+            'statusCode': 500,
+            'body': {
+                'error': f"Internal server error: {str(e)}",
+                'has_api_key': bool(GENIUS_API_KEY)
+            }
+        }
