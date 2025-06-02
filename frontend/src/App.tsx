@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import LyricsCard from './components/LyricsCard';
@@ -17,7 +17,7 @@ function App() {
     setLyrics(''); // Clear previous lyrics
 
     try {
-      const response = await fetch(`http://localhost:5000/api/lyrics?q=${encodeURIComponent(query)}`);
+      const response = await fetch(`/api/lyrics?query=${encodeURIComponent(query)}`);
       const data = await response.json();
       if (response.ok) {
         setLyrics(data.lyrics || 'Lyrics not found.'); // Handle empty lyrics from backend
@@ -31,6 +31,7 @@ function App() {
     }
   };
 
+  // Fungsi untuk mengganti tema dan menyimpan preferensi ke localStorage
   const toggleTheme = () => {
     const link = document.getElementById('theme-link') as HTMLLinkElement | null;
     if (!link) return;
@@ -39,7 +40,10 @@ function App() {
     } else {
       link.href = 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/darkly/bootstrap.min.css';
     }
-    setDarkMode(!darkMode);
+    // Toggle dark mode dan simpan ke localStorage
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', String(newDarkMode));
   };
 
   return (
