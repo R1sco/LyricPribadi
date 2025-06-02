@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     { "src": "api/index.py", "use": "@vercel/python" },
-    { "src": "frontend/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "frontend/dist", "buildCommand": "npm install && npx vite build" } }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "api/index.py" },

@@ -1,3 +1,4 @@
+// React 17+ tidak memerlukan import React untuk JSX
 import { useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
