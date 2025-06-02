@@ -260,24 +260,34 @@
   letter-spacing: -0.04em; /* Spotify-like letter spacing */
 }
 
-/* Basic scrollbar styling */
+/* Chrome, Edge, dan Safari */
 .lyrics-text {
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: #555 #333; /* Firefox */
-  pointer-events: auto; /* Pastikan scrolling dapat dilakukan */
-}
-
-/* Chrome, Edge, dan Safari */
-.lyrics-text::-webkit-scrollbar {
-  width: 6px;
-  background-color: #222;
-}
-
-.lyrics-text::-webkit-scrollbar-track {
-  background: #333;
-}
-
-.lyrics-text::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 3px;
+  
+  /* Custom scrollbar untuk Webkit browsers */
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 8px 0;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+  
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
