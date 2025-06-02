@@ -8,7 +8,5 @@
     { "src": "/api/(.*)", "dest": "api/index.py" },
     { "src": "/(.*)", "dest": "frontend/$1" }
   ],
-  "env": {
-    "GENIUS_API_KEY": "@genius_api_key"
-  }
+  "env": {}
 }
